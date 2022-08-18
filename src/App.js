@@ -1,17 +1,25 @@
 import './App.css';
-import {
-  HashRouter,
-  NavLink,
-  Routes, Route
-} from 'react-router-dom';
+import { HashRouter, NavLink, Routes, Route, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
+const Index = () => {
+  return <p>這是首頁</p>;
+};
+
+        {/* useNavigate 練習區 @8/18 每日任務 Day14：React Router */}
 const Todo = () => {
-  return <p>這是 Todo 頁面
-  </p>;
+  const [isLogin, setIsLogin] = useState(true);
+  let navigate = useNavigate();
+  return <>
+    <p>這是 Todo 頁面</p><button onClick={()=>{
+      setIsLogin(false);
+      navigate('/login')
+    }}>Logout</button></>;
 };
 const Login = () => {
   return <p>這是登入頁面</p>;
 };
+
 const Register = () => {
   return <p>這是註冊頁面</p>;
 };
@@ -34,13 +42,13 @@ function App() {
             <p>Todo 頁面</p>
           </NavLink>
         </div>
-        {/* Routes, Route 練習區 */}
+        {/* Routes, Route 練習區 @8/17 每日任務 Day13：React Router 建立 */}
         <Routes>
-          <Route path="/"/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/todo" element={<Todo/>}/>
-          <Route path="*" element={<>無效網址</>}/>
+          <Route path="/" element={<Index />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/todo" element={<Todo />} />
+          <Route path="*" element={<>無效網址</>} />
         </Routes>
         {/* 練習區 */}
       </HashRouter>
