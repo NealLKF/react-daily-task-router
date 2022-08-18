@@ -6,16 +6,21 @@ const Index = () => {
   return <p>這是首頁</p>;
 };
 
-        {/* useNavigate 練習區 @8/18 每日任務 Day14：React Router */}
 const Todo = () => {
+  return <>
+    <p>這是 Todo 頁面</p><Logout /></>;
+};
+
+{/* useNavigate 練習區 @8/18 每日任務 Day14：React Router */ }
+const Logout = () => {
   const [isLogin, setIsLogin] = useState(true);
   let navigate = useNavigate();
   return <>
-    <p>這是 Todo 頁面</p><button onClick={()=>{
+    <button onClick={() => {
       setIsLogin(false);
       navigate('/login')
     }}>Logout</button></>;
-};
+}
 const Login = () => {
   return <p>這是登入頁面</p>;
 };
