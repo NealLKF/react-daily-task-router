@@ -1,5 +1,5 @@
 import './App.css';
-import { HashRouter, NavLink, Routes, Route, useNavigate } from 'react-router-dom';
+import { HashRouter, NavLink, Routes, Route, useNavigate, useParams, Outlet } from 'react-router-dom';
 import { useState } from 'react';
 
 const Index = () => {
@@ -29,6 +29,15 @@ const Register = () => {
   return <p>這是註冊頁面</p>;
 };
 
+const Post = () => {
+  return <><p>Post頁面</p>
+    <Outlet />
+  </>;
+};
+const PostDetail = () => {
+  let params = useParams();
+  return <p>Post ID: {params.postid}</p>;
+};
 function App() {
   return (
     <div className="container">
@@ -46,6 +55,9 @@ function App() {
           <NavLink to="/todo">
             <p>Todo 頁面</p>
           </NavLink>
+          <NavLink to="/post">
+            <p>Post 詳細頁面</p>
+          </NavLink>
         </div>
         {/* Routes, Route 練習區 @8/17 每日任務 Day13：React Router 建立 */}
         <Routes>
@@ -53,6 +65,11 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/todo" element={<Todo />} />
+          
+        {/* Routes, Route 練習區 @8/19 每日任務 Day 15 ｜React Router 動態路由 */}
+          <Route path="/post" element={<Post/>} >
+            <Route path=":postid" element={<PostDetail />}></Route>
+          </Route>
           <Route path="*" element={<>無效網址</>} />
         </Routes>
         {/* 練習區 */}
